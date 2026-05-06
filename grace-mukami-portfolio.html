@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grace Mukami — Executive Virtual Assistant & Operations Partner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            charcoal: '#1A1A1A',
+            midnight: '#0A1128',
+            lightgray: '#F9FAFB',
+            muted: '#6B7280',
+            border: '#E5E7EB',
+            accent: '#B8966E',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #F9FAFB; color: #1A1A1A; -webkit-font-smoothing: antialiased; }
+
+    /* --- NAV --- */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(249,250,251,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #E5E7EB; }
+
+    /* --- HERO --- */
+    .hero-bg {
+      background-image: linear-gradient(to bottom right, rgba(10,17,40,0.72) 0%, rgba(10,17,40,0.48) 60%, rgba(10,17,40,0.18) 100%),
+        url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center 30%;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      backdrop-filter: blur(4px);
+      margin-bottom: 2rem;
+    }
+    .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: #B8966E; display: inline-block; }
+
+    /* --- SECTION DIVIDER --- */
+    .section-rule { border: none; border-top: 1px solid #E5E7EB; margin: 0; }
+
+    /* --- CARDS --- */
+    .service-card { border: 1px solid #E5E7EB; background: #fff; transition: border-color 0.25s; }
+    .service-card:hover { border-color: #0A1128; }
+    .tool-card { border: 1px solid #E5E7EB; background: #fff; transition: border-color 0.25s, background 0.25s; }
+    .tool-card:hover { border-color: #0A1128; background: #F0F4FF; }
+
+    /* --- TIMELINE --- */
+    .timeline-connector { flex: 1; height: 1px; background: #E5E7EB; }
+
+    /* --- WORK SAMPLES --- */
+    .sample-card { border: 1px solid #E5E7EB; background: #fff; transition: border-color 0.22s; cursor: pointer; }
+    .sample-card:hover { border-color: #0A1128; }
+
+    /* --- BUTTON --- */
+    .btn-primary {
+      display: inline-block;
+      background: #0A1128;
+      color: #fff;
+      padding: 14px 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #162040; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      color: #0A1128;
+      padding: 13px 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      border: 1px solid #0A1128;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { background: #0A1128; color: #fff; }
+
+    /* --- PACKAGE BADGE --- */
+    .pkg-badge { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
+
+    /* --- METRIC --- */
+    .metric-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #B8966E; font-weight: 500; letter-spacing: 0.04em; }
+
+    /* --- ANIMATE ON SCROLL --- */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* --- FOOTER --- */
+    footer { background: #0A1128; color: rgba(255,255,255,0.7); }
+
+    /* --- ABOUT PHOTO --- */
+    .about-photo {
+      background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    /* --- CUSTOM SCROLLBAR --- */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #F9FAFB; }
+    ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 3px; }
+
+    @media (max-width: 768px) {
+      .timeline-connector { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+    <a href="#" class="font-serif text-lg font-semibold text-midnight tracking-tight">Grace Mukami</a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-sans text-muted">
+      <a href="#about" class="hover:text-midnight transition-colors">About</a>
+      <a href="#services" class="hover:text-midnight transition-colors">Services</a>
+      <a href="#tools" class="hover:text-midnight transition-colors">Tools</a>
+      <a href="#process" class="hover:text-midnight transition-colors">Process</a>
+      <a href="#work" class="hover:text-midnight transition-colors">Work</a>
+    </div>
+    <a href="mailto:kagaugrace@gmail.com" class="btn-primary text-sm py-2.5 px-5">Book a Call</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero-bg min-h-screen flex items-center pt-16">
+  <div class="max-w-6xl mx-auto px-6 py-28 md:py-40">
+    <div class="max-w-3xl">
+      <div class="hero-badge fade-up">
+        <span></span>
+        Executive Virtual Assistant &amp; Operations Partner
+      </div>
+      <h1 class="font-serif text-5xl md:text-7xl font-bold text-white leading-[1.08] mb-6 fade-up" style="transition-delay:0.1s">
+        Your Vision,<br /><em class="not-italic" style="color:#d4ad7e;">My Execution.</em>
+      </h1>
+      <p class="font-sans text-lg md:text-xl text-white/80 font-light max-w-xl leading-relaxed mb-10 fade-up" style="transition-delay:0.2s">
+        I reclaim <strong class="font-medium text-white">15+ hours of your week</strong> by building the systems that allow you to lead — not just manage.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 fade-up" style="transition-delay:0.3s">
+        <a href="mailto:kagaugrace@gmail.com" class="btn-primary text-center">Book a Discovery Call</a>
+        <a href="#services" class="btn-ghost text-center" style="border-color:rgba(255,255,255,0.4);color:#fff;" onmouseover="this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.background='transparent'">View Packages</a>
+      </div>
+    </div>
+  </div>
+  <!-- Scroll hint -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 text-xs font-sans tracking-widest">
+    <span>SCROLL</span>
+    <svg width="1" height="32" viewBox="0 0 1 32"><line x1="0.5" y1="0" x2="0.5" y2="32" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></svg>
+  </div>
+</section>
+
+<hr class="section-rule" />
+
+<!-- ============ STATS BAR ============ -->
+<section class="bg-midnight py-10">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <div>
+      <p class="font-serif text-4xl font-bold text-white mb-1">15+</p>
+      <p class="text-white/55 text-sm font-sans">Hours Reclaimed / Week</p>
+    </div>
+    <div>
+      <p class="font-serif text-4xl font-bold text-white mb-1">40%</p>
+      <p class="text-white/55 text-sm font-sans">Bottleneck Reduction</p>
+    </div>
+    <div>
+      <p class="font-serif text-4xl font-bold text-white mb-1">14</p>
+      <p class="text-white/55 text-sm font-sans">Day Onboarding Blueprint</p>
+    </div>
+    <div>
+      <p class="font-serif text-4xl font-bold text-white mb-1">100%</p>
+      <p class="text-white/55 text-sm font-sans">Operational Alignment</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule" />
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-24 md:py-36 bg-lightgray">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <!-- Photo -->
+      <div class="fade-up order-2 md:order-1">
+        <div class="about-photo w-full aspect-[4/5] rounded-sm relative">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,17,40,0.28),transparent 50%);" class="rounded-sm"></div>
+        </div>
+      </div>
+      <!-- Copy -->
+      <div class="order-1 md:order-2 fade-up" style="transition-delay:0.15s">
+        <p class="pkg-badge text-accent mb-4">About Me</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-semibold text-midnight leading-tight mb-8">
+          The partner <em>behind</em><br />every great leader.
+        </h2>
+        <p class="font-sans text-lg text-muted font-light leading-relaxed mb-8">
+          You didn't start your business to manage calendars and troubleshoot workflows — you started it to <strong class="font-medium text-charcoal">lead.</strong> I act as the bridge between your big-picture goals and the day-to-day momentum required to reach them, rooted in <em>Discretion, Proactivity, and Precision.</em>
+        </p>
+        <div class="grid grid-cols-3 gap-6 mb-10">
+          <div class="text-center py-4 border border-border bg-white">
+            <p class="font-serif text-2xl font-semibold text-midnight mb-1">Discrete</p>
+            <p class="text-xs text-muted font-sans uppercase tracking-widest">Always</p>
+          </div>
+          <div class="text-center py-4 border border-border bg-white">
+            <p class="font-serif text-2xl font-semibold text-midnight mb-1">Proactive</p>
+            <p class="text-xs text-muted font-sans uppercase tracking-widest">By Default</p>
+          </div>
+          <div class="text-center py-4 border border-border bg-white">
+            <p class="font-serif text-2xl font-semibold text-midnight mb-1">Precise</p>
+            <p class="text-xs text-muted font-sans uppercase tracking-widest">In Everything</p>
+          </div>
+        </div>
+        <a href="mailto:kagaugrace@gmail.com" class="btn-primary">Let's Connect</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule" />
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="py-24 md:py-36 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mb-16 fade-up">
+      <p class="pkg-badge text-accent mb-4">Service Packages</p>
+      <h2 class="font-serif text-4xl md:text-5xl font-semibold text-midnight leading-tight max-w-xl">
+        Precision-built for the executive who is ready to scale.
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Package 1 -->
+      <div class="service-card p-8 fade-up" style="transition-delay:0.05s">
+        <div class="w-10 h-10 rounded-sm bg-midnight/8 flex items-center justify-center mb-6">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1128" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <p class="pkg-badge text-muted mb-2">Package 01</p>
+        <h3 class="font-serif text-2xl font-semibold text-midnight mb-4 leading-snug">The Executive Engine</h3>
+        <p class="text-muted text-sm font-sans leading-relaxed mb-6">Inbox Architecture and Strategic Calendar Blocking — so your attention goes where it creates the most value.</p>
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-start gap-2 text-sm text-charcoal font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="#E5E7EB"/><path d="M5 8l2 2 4-4" stroke="#0A1128" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            Inbox zero architecture
+          </li>
+          <li class="flex items-start gap-2 text-sm text-charcoal font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="#E5E7EB"/><path d="M5 8l2 2 4-4" stroke="#0A1128" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            Strategic calendar blocking
+          </li>
+          <li class="flex items-start gap-2 text-sm text-charcoal font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="#E5E7EB"/><path d="M5 8l2 2 4-4" stroke="#0A1128" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            Priority triage system
+          </li>
+          <li class="flex items-start gap-2 text-sm text-charcoal font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="#E5E7EB"/><path d="M5 8l2 2 4-4" stroke="#0A1128" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            Weekly executive briefings
+          </li>
+        </ul>
+        <div class="pt-6 border-t border-border">
+          <p class="metric-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8966E" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            Reclaim 10–15 hours/week
+          </p>
+        </div>
+      </div>
+
+      <!-- Package 2 -->
+      <div class="service-card p-8 fade-up" style="transition-delay:0.12s;background:#0A1128;border-color:#0A1128;">
+        <div class="w-10 h-10 rounded-sm bg-white/10 flex items-center justify-center mb-6">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <p class="pkg-badge text-white/50 mb-2">Package 02</p>
+        <h3 class="font-serif text-2xl font-semibold text-white mb-4 leading-snug">Operational Architecture</h3>
+        <p class="text-white/60 text-sm font-sans leading-relaxed mb-6">Workflow Automation and SOP Development — turning your tribal knowledge into repeatable, scalable systems.</p>
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-start gap-2 text-sm text-white/80 font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="rgba(255,255,255,0.2)"/><path d="M5 8l2 2 4-4" stroke="rgba(255,255,255,0.9)" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            Workflow mapping &amp; automation
+          </li>
+          <li class="flex items-start gap-2 text-sm text-white/80 font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="rgba(255,255,255,0.2)"/><path d="M5 8l2 2 4-4" stroke="rgba(255,255,255,0.9)" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            SOP development &amp; documentation
+          </li>
+          <li class="flex items-start gap-2 text-sm text-white/80 font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="rgba(255,255,255,0.2)"/><path d="M5 8l2 2 4-4" stroke="rgba(255,255,255,0.9)" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            Process bottleneck elimination
+          </li>
+          <li class="flex items-start gap-2 text-sm text-white/80 font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="rgba(255,255,255,0.2)"/><path d="M5 8l2 2 4-4" stroke="rgba(255,255,255,0.9)" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            Team handoff protocols
+          </li>
+        </ul>
+        <div class="pt-6 border-t border-white/10">
+          <p class="flex items-center gap-1.5 text-sm font-medium" style="color:#d4ad7e;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4ad7e" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            Reduce bottlenecks by 40%
+          </p>
+        </div>
+      </div>
+
+      <!-- Package 3 -->
+      <div class="service-card p-8 fade-up" style="transition-delay:0.19s">
+        <div class="w-10 h-10 rounded-sm bg-midnight/8 flex items-center justify-center mb-6">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1128" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <p class="pkg-badge text-muted mb-2">Package 03</p>
+        <h3 class="font-serif text-2xl font-semibold text-midnight mb-4 leading-snug">The Fractional Ops Partner</h3>
+        <p class="text-muted text-sm font-sans leading-relaxed mb-6">A full white-glove operational ecosystem — embedded as a strategic partner in your leadership layer.</p>
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-start gap-2 text-sm text-charcoal font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="#E5E7EB"/><path d="M5 8l2 2 4-4" stroke="#0A1128" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            Everything in Packages 01 &amp; 02
+          </li>
+          <li class="flex items-start gap-2 text-sm text-charcoal font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="#E5E7EB"/><path d="M5 8l2 2 4-4" stroke="#0A1128" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            Strategic ops advisory
+          </li>
+          <li class="flex items-start gap-2 text-sm text-charcoal font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="#E5E7EB"/><path d="M5 8l2 2 4-4" stroke="#0A1128" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            Full vendor &amp; stakeholder liaison
+          </li>
+          <li class="flex items-start gap-2 text-sm text-charcoal font-sans">
+            <svg class="mt-0.5 shrink-0" width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" stroke="#E5E7EB"/><path d="M5 8l2 2 4-4" stroke="#0A1128" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+            Ongoing KPI reporting
+          </li>
+        </ul>
+        <div class="pt-6 border-t border-border">
+          <p class="metric-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8966E" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            Complete operational alignment
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-12 text-center fade-up">
+      <a href="mailto:kagaugrace@gmail.com" class="btn-primary">Book a Discovery Call →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule" />
+
+<!-- ============ TOOLS ============ -->
+<section id="tools" class="py-24 md:py-36 bg-lightgray">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mb-16 fade-up">
+      <p class="pkg-badge text-accent mb-4">Technical Infrastructure</p>
+      <h2 class="font-serif text-4xl md:text-5xl font-semibold text-midnight leading-tight max-w-xl">
+        The toolkit that powers your operations.
+      </h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+      <!-- Google Workspace -->
+      <div class="tool-card p-6 fade-up" style="transition-delay:0.05s">
+        <div class="w-10 h-10 rounded-sm bg-lightgray border border-border flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1.5" fill="#4285F4"/><rect x="13" y="3" width="8" height="8" rx="1.5" fill="#34A853"/><rect x="3" y="13" width="8" height="8" rx="1.5" fill="#FBBC04"/><rect x="13" y="13" width="8" height="8" rx="1.5" fill="#EA4335"/></svg>
+        </div>
+        <p class="font-serif text-lg font-semibold text-midnight mb-1">Google Workspace</p>
+        <p class="text-muted text-xs font-sans leading-relaxed">Gmail · Drive · Calendar optimization</p>
+      </div>
+
+      <!-- Asana & ClickUp -->
+      <div class="tool-card p-6 fade-up" style="transition-delay:0.10s">
+        <div class="w-10 h-10 rounded-sm bg-lightgray border border-border flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#F06A6A"/><circle cx="5" cy="12" r="3" fill="#FBBC04"/><circle cx="19" cy="12" r="3" fill="#4285F4"/></svg>
+        </div>
+        <p class="font-serif text-lg font-semibold text-midnight mb-1">Asana &amp; ClickUp</p>
+        <p class="text-muted text-xs font-sans leading-relaxed">Project mapping &amp; team workflows</p>
+      </div>
+
+      <!-- Notion -->
+      <div class="tool-card p-6 fade-up" style="transition-delay:0.15s">
+        <div class="w-10 h-10 rounded-sm bg-lightgray border border-border flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" fill="#1A1A1A"/><path d="M7 7h10M7 12h6M7 17h4" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <p class="font-serif text-lg font-semibold text-midnight mb-1">Notion</p>
+        <p class="text-muted text-xs font-sans leading-relaxed">Knowledge management &amp; SOPs</p>
+      </div>
+
+      <!-- Google Scheduler -->
+      <div class="tool-card p-6 fade-up" style="transition-delay:0.20s">
+        <div class="w-10 h-10 rounded-sm bg-lightgray border border-border flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="17" rx="2" stroke="#4285F4" stroke-width="1.6"/><path d="M8 2v3M16 2v3M3 10h18" stroke="#4285F4" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="16" r="2.5" fill="#34A853"/></svg>
+        </div>
+        <p class="font-serif text-lg font-semibold text-midnight mb-1">Google Scheduler</p>
+        <p class="text-muted text-xs font-sans leading-relaxed">Time protection &amp; smart scheduling</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule" />
+
+<!-- ============ ONBOARDING BLUEPRINT ============ -->
+<section id="process" class="py-24 md:py-36 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mb-16 fade-up">
+      <p class="pkg-badge text-accent mb-4">Onboarding Blueprint</p>
+      <h2 class="font-serif text-4xl md:text-5xl font-semibold text-midnight leading-tight max-w-xl">
+        Fully operational in just 14 days.
+      </h2>
+    </div>
+
+    <!-- Horizontal Timeline (desktop) -->
+    <div class="hidden md:flex items-start gap-0 fade-up">
+
+      <!-- Step 1 -->
+      <div class="flex-1">
+        <div class="flex items-center mb-6">
+          <div class="w-9 h-9 rounded-full border-2 border-midnight bg-midnight flex items-center justify-center text-white font-sans text-xs font-semibold shrink-0">01</div>
+          <div class="timeline-connector ml-4"></div>
+        </div>
+        <div class="pr-8">
+          <p class="text-xs font-sans text-muted uppercase tracking-widest mb-1">Day 1–3</p>
+          <h3 class="font-serif text-xl font-semibold text-midnight mb-2">Operational Audit</h3>
+          <p class="text-muted text-sm font-sans leading-relaxed">Deep-dive into your current workflows, pain points, and goals. We map what's working and what isn't.</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flex-1">
+        <div class="flex items-center mb-6">
+          <div class="w-9 h-9 rounded-full border-2 border-midnight bg-white flex items-center justify-center text-midnight font-sans text-xs font-semibold shrink-0">02</div>
+          <div class="timeline-connector ml-4"></div>
+        </div>
+        <div class="pr-8">
+          <p class="text-xs font-sans text-muted uppercase tracking-widest mb-1">Day 4–7</p>
+          <h3 class="font-serif text-xl font-semibold text-midnight mb-2">Environment Architecture</h3>
+          <p class="text-muted text-sm font-sans leading-relaxed">Build your tailored system infrastructure — tools configured, calendars structured, inboxes optimized.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flex-1">
+        <div class="flex items-center mb-6">
+          <div class="w-9 h-9 rounded-full border-2 border-midnight bg-white flex items-center justify-center text-midnight font-sans text-xs font-semibold shrink-0">03</div>
+          <div class="timeline-connector ml-4"></div>
+        </div>
+        <div class="pr-8">
+          <p class="text-xs font-sans text-muted uppercase tracking-widest mb-1">Day 8–12</p>
+          <h3 class="font-serif text-xl font-semibold text-midnight mb-2">Knowledge Institutionalization</h3>
+          <p class="text-muted text-sm font-sans leading-relaxed">Document SOPs, build your central knowledge hub, and create the recurring systems your team will run on.</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="flex-1">
+        <div class="flex items-center mb-6">
+          <div class="w-9 h-9 rounded-full border-2 border-midnight bg-white flex items-center justify-center text-midnight font-sans text-xs font-semibold shrink-0">04</div>
+        </div>
+        <div class="pr-8">
+          <p class="text-xs font-sans text-muted uppercase tracking-widest mb-1">Day 13–14</p>
+          <h3 class="font-serif text-xl font-semibold text-midnight mb-2">Optimization &amp; Hand-off</h3>
+          <p class="text-muted text-sm font-sans leading-relaxed">Final refinements, team briefing, and seamless transition — so you step back in with full clarity and control.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Vertical Timeline (mobile) -->
+    <div class="flex flex-col gap-10 md:hidden fade-up">
+      <div class="flex gap-5">
+        <div class="flex flex-col items-center">
+          <div class="w-9 h-9 rounded-full border-2 border-midnight bg-midnight flex items-center justify-center text-white font-sans text-xs font-semibold shrink-0">01</div>
+          <div class="flex-1 w-px bg-border mt-2"></div>
+        </div>
+        <div class="pb-6">
+          <p class="text-xs font-sans text-muted uppercase tracking-widest mb-1">Day 1–3</p>
+          <h3 class="font-serif text-xl font-semibold text-midnight mb-2">Operational Audit</h3>
+          <p class="text-muted text-sm font-sans leading-relaxed">Deep-dive into your current workflows, pain points, and goals. We map what's working and what isn't.</p>
+        </div>
+      </div>
+      <div class="flex gap-5">
+        <div class="flex flex-col items-center">
+          <div class="w-9 h-9 rounded-full border-2 border-midnight bg-white flex items-center justify-center text-midnight font-sans text-xs font-semibold shrink-0">02</div>
+          <div class="flex-1 w-px bg-border mt-2"></div>
+        </div>
+        <div class="pb-6">
+          <p class="text-xs font-sans text-muted uppercase tracking-widest mb-1">Day 4–7</p>
+          <h3 class="font-serif text-xl font-semibold text-midnight mb-2">Environment Architecture</h3>
+          <p class="text-muted text-sm font-sans leading-relaxed">Build your tailored system infrastructure — tools configured, calendars structured, inboxes optimized.</p>
+        </div>
+      </div>
+      <div class="flex gap-5">
+        <div class="flex flex-col items-center">
+          <div class="w-9 h-9 rounded-full border-2 border-midnight bg-white flex items-center justify-center text-midnight font-sans text-xs font-semibold shrink-0">03</div>
+          <div class="flex-1 w-px bg-border mt-2"></div>
+        </div>
+        <div class="pb-6">
+          <p class="text-xs font-sans text-muted uppercase tracking-widest mb-1">Day 8–12</p>
+          <h3 class="font-serif text-xl font-semibold text-midnight mb-2">Knowledge Institutionalization</h3>
+          <p class="text-muted text-sm font-sans leading-relaxed">Document SOPs, build your central knowledge hub, and create the recurring systems your team will run on.</p>
+        </div>
+      </div>
+      <div class="flex gap-5">
+        <div class="flex flex-col items-center">
+          <div class="w-9 h-9 rounded-full border-2 border-midnight bg-white flex items-center justify-center text-midnight font-sans text-xs font-semibold shrink-0">04</div>
+        </div>
+        <div>
+          <p class="text-xs font-sans text-muted uppercase tracking-widest mb-1">Day 13–14</p>
+          <h3 class="font-serif text-xl font-semibold text-midnight mb-2">Optimization &amp; Hand-off</h3>
+          <p class="text-muted text-sm font-sans leading-relaxed">Final refinements, team briefing, and seamless transition — so you step back in with full clarity and control.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-rule" />
+
+<!-- ============ WORK SAMPLES ============ -->
+<section id="work" class="py-24 md:py-36 bg-lightgray">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mb-16 fade-up">
+      <p class="pkg-badge text-accent mb-4">Work Samples</p>
+      <h2 class="font-serif text-4xl md:text-5xl font-semibold text-midnight leading-tight max-w-xl">
+        Systems built. Results delivered.
+      </h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+      <div class="sample-card p-6 fade-up" style="transition-delay:0.05s">
+        <div class="w-10 h-10 border border-border rounded-sm flex items-center justify-center mb-4 bg-lightgray">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1128" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <p class="font-serif text-base font-semibold text-midnight mb-1">Executive Inbox SOP</p>
+        <p class="text-muted text-xs font-sans">Notion · Google Gmail</p>
+      </div>
+
+      <div class="sample-card p-6 fade-up" style="transition-delay:0.10s">
+        <div class="w-10 h-10 border border-border rounded-sm flex items-center justify-center mb-4 bg-lightgray">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1128" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <p class="font-serif text-base font-semibold text-midnight mb-1">Client Project Tracker</p>
+        <p class="text-muted text-xs font-sans">Asana · ClickUp</p>
+      </div>
+
+      <div class="sample-card p-6 fade-up" style="transition-delay:0.15s">
+        <div class="w-10 h-10 border border-border rounded-sm flex items-center justify-center mb-4 bg-lightgray">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1128" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <p class="font-serif text-base font-semibold text-midnight mb-1">Calendar Blocking Template</p>
+        <p class="text-muted text-xs font-sans">Google Calendar</p>
+      </div>
+
+      <div class="sample-card p-6 fade-up" style="transition-delay:0.05s">
+        <div class="w-10 h-10 border border-border rounded-sm flex items-center justify-center mb-4 bg-lightgray">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1128" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <p class="font-serif text-base font-semibold text-midnight mb-1">Workflow Automation Map</p>
+        <p class="text-muted text-xs font-sans">Notion · Google Drive</p>
+      </div>
+
+      <div class="sample-card p-6 fade-up" style="transition-delay:0.10s">
+        <div class="w-10 h-10 border border-border rounded-sm flex items-center justify-center mb-4 bg-lightgray">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1128" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <p class="font-serif text-base font-semibold text-midnight mb-1">Team Onboarding Playbook</p>
+        <p class="text-muted text-xs font-sans">Notion · ClickUp</p>
+      </div>
+
+      <div class="sample-card p-6 fade-up" style="transition-delay:0.15s">
+        <div class="w-10 h-10 border border-border rounded-sm flex items-center justify-center mb-4 bg-lightgray">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1128" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <p class="font-serif text-base font-semibold text-midnight mb-1">KPI Dashboard &amp; Report</p>
+        <p class="text-muted text-xs font-sans">Google Sheets · Drive</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule" />
+
+<!-- ============ CTA BANNER ============ -->
+<section class="bg-midnight py-24 text-center">
+  <div class="max-w-3xl mx-auto px-6 fade-up">
+    <p class="pkg-badge text-white/40 mb-6" style="display:inline-block">Let's Work Together</p>
+    <h2 class="font-serif text-4xl md:text-6xl font-semibold text-white mb-6 leading-tight">
+      Ready to lead,<br /><em style="color:#d4ad7e;">not just manage?</em>
+    </h2>
+    <p class="text-white/60 font-sans text-lg font-light mb-10 leading-relaxed">
+      One discovery call is all it takes to identify exactly where you're losing time — and how to get it back.
+    </p>
+    <a href="mailto:kagaugrace@gmail.com" class="btn-primary text-base px-10 py-4" style="background:#d4ad7e;color:#0A1128;font-weight:600;">Book a Discovery Call →</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-16">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-12 mb-12">
+      <div>
+        <p class="font-serif text-2xl font-semibold text-white mb-3">Grace Mukami</p>
+        <p class="text-white/50 text-sm font-sans leading-relaxed max-w-xs">Executive Virtual Assistant &amp; Operations Support Professional. Nairobi, Kenya.</p>
+      </div>
+      <div>
+        <p class="text-white/30 text-xs uppercase tracking-widest font-sans mb-4">Contact</p>
+        <ul class="space-y-2">
+          <li><a href="mailto:kagaugrace@gmail.com" class="text-white/60 text-sm font-sans hover:text-white transition-colors">kagaugrace@gmail.com</a></li>
+          <li><a href="tel:+254703148324" class="text-white/60 text-sm font-sans hover:text-white transition-colors">+254 703 148 324</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white/30 text-xs uppercase tracking-widest font-sans mb-4">Connect</p>
+        <div class="flex gap-4">
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn" class="w-9 h-9 border border-white/15 rounded-sm flex items-center justify-center text-white/50 hover:text-white hover:border-white/40 transition-all">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="#" aria-label="Twitter" class="w-9 h-9 border border-white/15 rounded-sm flex items-center justify-center text-white/50 hover:text-white hover:border-white/40 transition-all">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- Email -->
+          <a href="mailto:kagaugrace@gmail.com" aria-label="Email" class="w-9 h-9 border border-white/15 rounded-sm flex items-center justify-center text-white/50 hover:text-white hover:border-white/40 transition-all">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <hr style="border-color:rgba(255,255,255,0.08);" />
+    <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-white/25 text-xs font-sans">© 2025 Grace Mukami. All rights reserved.</p>
+      <p class="text-white/25 text-xs font-sans">Executive Virtual Assistant · Operations Partner · Nairobi, KE</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCROLL ANIMATION ============ -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Trigger hero elements immediately
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.hero-bg .fade-up').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 120);
+    });
+  });
+</script>
+
+</body>
+</html>
